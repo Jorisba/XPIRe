@@ -594,6 +594,7 @@ void NFLlib::freeNTTMemory(){
       mpz_clear(moduliProduct);
     }
   }
+  if (alreadyInit) free (phis);
 
   alreadyInit = 0;
 }

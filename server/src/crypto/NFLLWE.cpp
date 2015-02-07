@@ -729,6 +729,8 @@ void NFLLWE::clearSecretKeys()
     // secreKey was allocated with a single allocation
     free(secretKey[0]);
     delete[] secretKey;
+    delete[] Abit_mod; 
+    delete[] Abit_mod_shoup;
   }
 
   if(oldNbModuli)
