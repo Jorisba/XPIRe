@@ -123,8 +123,6 @@ DBDirectoryProcessor::DBDirectoryProcessor(uint64_t nbStreams) : filesSplitting(
 	std::cout << "DBDirectoryProcessor: The number of elements in the catalog is " << file_list.size() << std::endl;
 }
 
-DBDirectoryProcessor::~DBDirectoryProcessor() {}
-
 std::string DBDirectoryProcessor::getCatalog(const bool typeOfCatalog) {
 	std::string buf;
 	directory=std::string(DEFAULT_DIR_NAME);
@@ -229,4 +227,11 @@ void DBDirectoryProcessor::readAggregatedStream(uint64_t streamNb, uint64_t alph
   {
 	  bzero(rawBits + (endStream % alpha) * fileByteSize, fileByteSize*paddingStreams);
   }
+}
+
+
+DBDirectoryProcessor::~DBDirectoryProcessor() {
+	for (auto ptr : fdPool) {
+		delete ptr;
+	} 
 }
